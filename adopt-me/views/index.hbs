@@ -1,0 +1,48 @@
+<!--
+    PAGINA HOME
+-->
+{{#each animalsWithImage}}
+
+<div class="container">
+  <img src={{image}} class="image-home"> </img>
+  <div class = "content">
+    <br>
+    <span class="attribute">
+      Name:{{this.animalname}}
+    </span>
+    <br>
+    <span class="attribute">
+      Breed: {{this.breedname}}
+    </span>
+    <br>
+    <span class="attribute">
+      Specie {{this.speciesname}}
+    </span>
+    <br>
+    <span class="attribute">
+      Age: {{this.animalage}}
+    </span>
+    <br>
+    <span class="attribute">
+      Color: {{this.basecolour}}
+    </span>
+    <div class="divbutton">
+      <button class="details-button">
+        <a href="/{{this.id}}?url={{image}}">
+          Details
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+{{/each}}
+<!--
+  <div class="divbutton">
+      <button class="adopt-button">
+        details
+      </button>
+    </div>
+  -->

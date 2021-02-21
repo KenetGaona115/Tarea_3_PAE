@@ -1,0 +1,37 @@
+<!--
+    PAGINA DE DETALLES DEL ANIMAL
+-->
+
+<div class="container-datails">
+    <br>
+    <img src={{image}} class="image-detail"> </img>
+  <div class = "content-detail">
+    <br>
+    <span class="attribute-detail">
+      Name:{{animal.animalname}}
+    </span>
+    <br>
+    <span class="attribute-detail">
+      Breed: {{animal.breedname}}
+    </span>
+    <br>
+    <span class="attribute-detail">
+      Specie {{animal.speciesname}}
+    </span>
+    <br>
+    <span class="attribute-detail">
+      Age: {{animal.animalage}}
+    </span>
+    <br>
+    <span class="attribute-detail">
+      Color: {{animal.basecolour}}
+    </span>
+    <div class="divbutton-detail">
+      <button class="adopt-button">
+        <a href="/adopt/{{animal.id}}">
+          Adopt me!
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
