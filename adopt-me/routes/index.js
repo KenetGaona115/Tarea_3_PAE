@@ -1,57 +1,72 @@
 const express = require('express');
-const data = require('../data/data.json');
-const axios = require('axios');
-
 const router = express.Router();
-let animals = [];//arreglo sin imagen
+const Joi = require('joi');
+const animalsAPI = require('../Animals/animalsAPI')
+const usersAPI = require('../Users/userAPI')
 
-let finalAnimals = [];//arreglo con imagen
+let finalAnimals = animalsAPI.getArray();
+let userData = usersAPI.getData();
 
-for (let i = 0; i < 10; i ++){
-  animals.push(data[i])
-}
+const schema = Joi.object({
+  animalname: Joi.string().min(5).required(),
+  breedname: Joi.string(),
+  speciesname: Joi.string(),
+  animalage: Joi.string().required(),
+  basecolour: Joi.string(),
+  owner: Joi.string()
+
+});
+
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  //El arreglo de animales lo convierte en promesas
-  const animalsPromises = animals.map(() => {
-    return new Promise((resolve, reject) => {
-      axios.get('https://api.thecatapi.com/v1/images/search')
-        //body es como el response
-        .then(function ({ data}) {
-          const [cat] = data;
-          const { url } = cat;
-          resolve(url);
-        }).catch(function (error) {
-          reject(error);
-        });
-    });
-  });
-  //Resuelve todas las promesas ejecutandose en paralelo
-  Promise.all(animalsPromises)
-    //las promesas rgresan en el object de urls
-    .then(function (urls) {
-      const animalsWithImage = animals.map((animal, index) => ({ ...animal, image: urls[index]}));
-      //finalAnimals.push(animalsWithImage)
-      res.render('index', { animalsWithImage });
-    })
-    .catch(function(errors){
-      res.send(`${errors}`)
-    });
+  res.render('index', { finalAnimals });
 });
 
 router.get('/:id', (req, res) => {
-  const {id, imageUrl} = req.params;
-  const {url} = req.query;
-  const animal = animals.find(animal => animal.id == id)
-  res.render('details', {animal: animal, image: url})
+  const { id, imageUrl } = req.params;
+  const { url } = req.query;
+  const animal = animalsAPI.getAnimalById(id)
+  console.log(animal)
+  res.render('details', { animal: animal, image: url })
 });
 
 router.get('/adopt/:id', (req, res) => {
-  const {id} = req.params;
-  const animal = animals.find(animal => animal.id == id)
-  res.render('adopt', {animal: animal})
+  const { id } = req.params;
+  const animal = animalsAPI.getAnimalById(id)
+  res.render('adopt', { animal: animal })
 })
 
+router.post('/owner/:id', function (req, res) {
+  const iduser = req.body.iduser
+  const { id } = req.params;
+  const animal = animalsAPI.getAnimalById(id)
+  animal.owner = userData.find(user => user.id == iduser).fullName;
+  res.render('index', { finalAnimals });
+})
+
+//Creamos animal
+router.post('/animals', function (req, res) {
+  const { animalname, breedname, speciesname, animalage, basecolour, owner } = req.body;
+  const result = schema.validate({ animalname, breedname, speciesname, animalage, basecolour, owner });
+  if (result.error) return res.status(400).send(result.error.details[0].message);
+  const animal = animalsAPI.createAnimal(animalname, breedname, speciesname, animalage, basecolour, owner);
+  res.send(animal);
+});
+
+//Actulizamos animal
+router.put('/animals/:id', function (req, res) {
+  const { id } = req.params
+  const { animalname, breedname, speciesname, animalage, basecolour } = req.body;
+  const result = schema.validate({ animalname, breedname, speciesname, animalage, basecolour })
+  if (result.error) return result.status(400).send(result.error.deails)
+  res.send(animalsAPI.updateAnimal(id, animalname, breedname, speciesname, animalage, basecolour));
+})
+//Eliminamos animal 
+router.delete('/animals/:id', function (req, res) {
+  const { id } = req.params;
+  const animal = animalsAPI.deleteAnimal(id)
+  res.send(animal);
+})
 
 module.exports = router;

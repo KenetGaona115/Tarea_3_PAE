@@ -3,9 +3,9 @@
 -->
 
 <div class="container-datails">
-    <br>
-    <img src={{image}} class="image-detail"> </img>
-  <div class = "content-detail">
+  <br>
+  <img src={{animal.image}} class="image-detail"> </img>
+  <div class="content-detail">
     <br>
     <span class="attribute-detail">
       Name:{{animal.animalname}}
@@ -26,12 +26,16 @@
     <span class="attribute-detail">
       Color: {{animal.basecolour}}
     </span>
+    <br>
+    <span class="attribute-detail">
+      Owner: {{animal.owner}}
+    </span>
     <div class="divbutton-detail">
-      <button class="adopt-button">
-        <a href="/adopt/{{animal.id}}">
+      <a href="/adopt/{{animal.id}}">
+        <button class="adopt-button">
           Adopt me!
-        </a>
-      </button>
+        </button>
+      </a>
     </div>
   </div>
 </div>

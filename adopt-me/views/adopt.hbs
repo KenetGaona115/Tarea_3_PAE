@@ -10,18 +10,27 @@
     </div>
     <br>
     <div class="id-user-adopt">
-        <label class="text-adopt">ID</label>
-        <input type="text" id="Name" name="Name" class="input-adopt"/>
-    </div>
-    <br>
-    <div>
-        <a href="/">
-         <button class="final-adopt-button" , type="submit">
-        <script>
-            console.log(Name)
-        </script>
-          Adopt me!
-      </button>
-      </a>
+        <form method="post" action="/owner/{{animal.id}}">
+        <span>
+            ID
+        </span>
+            <input type="text" name="iduser" required /><br />
+            <a href="/">
+            <button class="final-adopt-button" type="submit">
+                Adopt me!
+            </button>
+            </a>
+        </form>
+
     </div>
 </div>
+
+<!--
+
+<a href="/">
+            <button class="final-adopt-button" type="button" onclick="getId">
+                Adopt me!
+            </button>
+        </a>
+
+    -->

@@ -1,7 +1,7 @@
 <!--
     PAGINA HOME
 -->
-{{#each animalsWithImage}}
+{{#each finalAnimals}}
 
 <div class="container">
   <img src={{image}} class="image-home"> </img>
@@ -28,7 +28,7 @@
     </span>
     <div class="divbutton">
       <button class="details-button">
-        <a href="/{{this.id}}?url={{image}}">
+        <a href="/{{this.id}}?url={{this.image}}">
           Details
         </a>
       </button>
