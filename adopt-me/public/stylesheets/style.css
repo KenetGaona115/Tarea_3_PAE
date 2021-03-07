@@ -4,6 +4,17 @@ body {
   margin: 0px;
 }
 
+.appbar{
+  width:10%;
+  font-size: 20px;
+  justify-content: space-between;
+  margin-top: 1%;
+  }
+  
+  .image-login{
+    height: 30px;
+    width: 30px;
+  }
 
 
 h1.header{
@@ -136,3 +147,41 @@ Diseño de adopt
   border-radius:5px;
   border-color: transparent;
 }
+
+/*
+Diseño de login
+*/
+.container-login{
+  background-color: rgb(156, 151, 151);
+  margin-left :auto;
+  margin-right: auto;
+  height:80%;
+  width: 45%;
+  border-radius: 10px;
+}
+
+.form-login-login-buttons{
+  text-align: center;
+}
+
+.form-control{
+  font-size: 20px;
+}
+
+.button-login{
+  font-size: 20px;
+}
+/*
+Diseño de profile
+*/
+
+.container-tittle{
+  margin-left :auto;
+  margin-right: auto;
+  text-align:center;
+}
+
+.tittle-profile{
+  font-size: 30px;
+}
+

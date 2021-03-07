@@ -20,7 +20,7 @@ const schema = Joi.object({
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  res.render('index', { finalAnimals });
+  res.render('index', { finalAnimals, isLogged:Boolean(req.user) });
 });
 
 router.get('/:id', (req, res) => {
@@ -28,13 +28,13 @@ router.get('/:id', (req, res) => {
   const { url } = req.query;
   const animal = animalsAPI.getAnimalById(id)
   console.log(animal)
-  res.render('details', { animal: animal, image: url })
+  res.render('details', { animal: animal, image: url, isLogged:Boolean(req.user) })
 });
 
 router.get('/adopt/:id', (req, res) => {
   const { id } = req.params;
   const animal = animalsAPI.getAnimalById(id)
-  res.render('adopt', { animal: animal })
+  res.render('adopt', { animal: animal, isLogged:Boolean(req.user) })
 })
 
 router.post('/owner/:id', function (req, res) {
@@ -42,7 +42,7 @@ router.post('/owner/:id', function (req, res) {
   const { id } = req.params;
   const animal = animalsAPI.getAnimalById(id)
   animal.owner = userData.find(user => user.id == iduser).fullName;
-  res.render('index', { finalAnimals });
+  res.render('index', { finalAnimals, isLogged:Boolean(req.user) });
 })
 
 //Creamos animal

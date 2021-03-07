@@ -3,13 +3,19 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const hbs = require('express-handlebars')
+//leemos credenciales locales
+require('dotenv').config();
+require('dotenv').config();
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
 
 //routes
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
+const profileRouter = require('./routes/profile');
+require('./config/passport');
 
 const app = express();
 
@@ -25,8 +31,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', usersRouter);
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1, key2']
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
 app.use('/', indexRouter);
+
+
 
 /*
 // catch 404 and forward to error handler
