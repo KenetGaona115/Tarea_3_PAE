@@ -1,9 +1,7 @@
-body {
-  padding: 0px 40px;
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin: 0px;
+html,body{
+  background-image: url('https://4.bp.blogspot.com/-QTRtlAT3xkY/XQ0bLGJX_II/AAAAAAAAHlQ/0gI7kwuEzRgC3IusdZoR6Qqi9ZJSQXX6gCKgBGAs/w3840-h2400-c/halo-infinite-uhdpaper.com-4K-13.jpg');
+  background-size: cover;
 }
-
 .appbar{
   width:10%;
   font-size: 20px;
@@ -31,7 +29,7 @@ a {
   color:black;
   text-decoration: none;
 }
-.container {
+.container-home {
   background-color: rgb(156, 151, 151);
   margin-left :auto;
   margin-right: auto;
@@ -152,36 +150,89 @@ Diseño de adopt
 Diseño de login
 */
 .container-login{
-  background-color: rgb(156, 151, 151);
-  margin-left :auto;
-  margin-right: auto;
-  height:80%;
-  width: 45%;
-  border-radius: 10px;
+  padding-top:4.2rem;
+padding-bottom:4.2rem;
 }
 
-.form-login-login-buttons{
-  text-align: center;
+   h1,h2,h3{
+   font-family: 'Kaushan Script', cursive;
+   }
+    .myform{
+position: relative;
+display: -ms-flexbox;
+display: flex;
+padding: 1rem;
+-ms-flex-direction: column;
+flex-direction: column;
+width: 100%;
+pointer-events: auto;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid rgba(0,0,0,.2);
+border-radius: 1.1rem;
+outline: 0;
+max-width: 500px;
 }
-
-.form-control{
-  font-size: 20px;
-}
-
-.button-login{
-  font-size: 20px;
-}
+   .tx-tfm{
+   text-transform:uppercase;
+   }
+   .mybtn{
+   border-radius:50px;
+   }
+  
+   .login-or {
+   position: relative;
+   color: #aaa;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   }
+   .span-or {
+   display: block;
+   position: absolute;
+   left: 50%;
+   top: -2px;
+   margin-left: -25px;
+   background-color: #fff;
+   width: 50px;
+   text-align: center;
+   }
+   .hr-or {
+   height: 1px;
+   margin-top: 0px !important;
+   margin-bottom: 0px !important;
+   }
+   .google {
+   color:#666;
+   width:100%;
+   height:40px;
+   text-align:center;
+   outline:none;
+   border: 1px solid lightgrey;
+   }
+    form .error {
+   color: #ff0000;
+   }
+   #second{display:none;}
 /*
 Diseño de profile
 */
 
-.container-tittle{
-  margin-left :auto;
+
+.container-profile{
+  margin-left :1.2em;
   margin-right: auto;
-  text-align:center;
+  background-color:rgba(202, 189, 189, 0.055);
 }
 
-.tittle-profile{
-  font-size: 30px;
+.row{
+  filter: alpha(opacity=50)
 }
 
+/*
+Navbar
+*/
+
+.navbar-brand { position: relative; z-index: 2; }
+.navbar.navbar-inverse .nav-collapse { background-color: #222; }

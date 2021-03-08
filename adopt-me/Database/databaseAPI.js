@@ -9,8 +9,10 @@ const dbName = "DB_Tarea4";
 const collectionName = "Usuarios"
 client.connect();
 
-function getAllUsers() {
-    return console.log(client.db(dbName).collection(collectionName).find())
+ function getAllUsers() {
+    console.log('--------------------------------Database--------------------------------')
+    const data = client.db(dbName).collection(collectionName).find()
+    return console.log(data)
 }
 
 function createUser(name, email, picture) {
@@ -23,16 +25,18 @@ function createUser(name, email, picture) {
     getAllUsers();
 }
 
-function getUserByEmail(email) {
+async function getUserByEmail(email) {
 
-    const User = client.db(dbName).collection(collectionName).findOne(
-        { email: email }
+    let user = await client.db(dbName).collection(collectionName).findOne(
+        { email: `${email}` }
     );
-    return user;
+    //console.log('Resultado de busqueda')
+    //console.log(user)
+    return user
 }
 
 function deleteUserByEmail(email) {
-    client.db(dbName).collection(collectionName).deleteOne({ email: email})
+    client.db(dbName).collection(collectionName).deleteOne({ email: email })
     console.log('Usuario eliminado')
 }
 

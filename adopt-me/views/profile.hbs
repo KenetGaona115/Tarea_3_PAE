@@ -1,23 +1,20 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<div class="container-tittle">
-    <span class="tittle-profile">User profile</span>
-</div>
-<div class="container-datails">
-  <br>
-  <img src={{user.picture}} class="image-detail"> </img>
-  <br>
-  <div class="content-detail">
-    <br>
-    <span class="attribute-detail">
-      Name:{{user.name}}
-    </span>
-    <br>
-    <span class="attribute-detail">
-      Email: {{user.email}}
-    </span>
-    <br>
-    <span class="attribute-detail">
-      Location: {{user.locale}}
-    </span>
+<div class="container-profile">
+  <div class="row">
+  <div class="col-lg-5">
+    <div class="media">
+        <img class="media-object dp img-circle" src={{user.picture}} style="width: 150px;height:150px;">
+      <div class="media-body">
+        <h4 class="media-heading">{{user.name}} <small> {{user.location}}</small></h4>
+        <h5> {{user.email}} </h5>
+        <hr style="margin:8px auto">
+      </div>
+    </div>
+
   </div>
+</div>
 </div>

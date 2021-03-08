@@ -13,11 +13,14 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 router.get(
     '/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
-    function (req, res) {
-        const profile = databaseAPI.getUserByEmail(req.user._json.email)
-        if (profile == null) {
-            console.log(profile)
-            databaseAPI.createUser(req.user._json.name, req.user._json.email, req.user._json.picture)
+    async function (req, res) {
+        const name = req.user._json.name;
+        const email = req.user._json.email;
+        const picture = req.user._json.picture;
+        console.log(await databaseAPI.getUserByEmail(email));
+        if (await databaseAPI.getUserByEmail(email) == null) {
+            console.log('Entra')
+            databaseAPI.createUser(name, email, picture)
         }
         res.redirect('/profile');
     });
